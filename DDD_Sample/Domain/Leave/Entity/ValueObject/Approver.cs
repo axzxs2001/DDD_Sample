@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Leave.Entity.ValueObject
 {
-    public class Approver
+    public class Approver : SeedWork.ValueObject
     {
         public string PersonId { get; set; }
         public string PersonName { get; set; }
@@ -17,6 +17,11 @@ namespace Domain.Leave.Entity.ValueObject
             approver.PersonName = person.PersonName;
             approver.Level = person.RoleLevel;
             return approver;
+        }
+
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return new object[] { PersonId, PersonName, Level };
         }
     }
 }

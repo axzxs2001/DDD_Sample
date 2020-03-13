@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Rule.Service
 {
-    public class ApprovalRuleDomainService
+    public class ApprovalRuleDomainService : IApprovalRuleDomainService
     {
         readonly IApprovalRuleRepository _approvalRuleRepository;
         public ApprovalRuleDomainService(IApprovalRuleRepository approvalRuleRepository)

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Domain.Leave.Service
 {
-    public class LeaveDomainService
+    public class LeaveDomainService : ILeaveDomainService
     {
         readonly EventPublisher _eventPublisher;
 
@@ -24,7 +24,7 @@ namespace Domain.Leave.Service
         }
 
 
-        public void createLeave(Entity.Leave leave, int leaderMaxLevel, Approver approver)
+        public void CreateLeave(Entity.Leave leave, int leaderMaxLevel, Approver approver)
         {
             leave.LeaderMaxLevel = leaderMaxLevel;
             leave.Approver = approver;
@@ -84,13 +84,13 @@ namespace Domain.Leave.Service
         }
 
         public List<Entity.Leave> QueryLeaveInfosByApplicant(string applicantId)
-        {   
+        {
             var leaves = new List<Entity.Leave>();
             var leavePOList = _leaveRepository.QueryByApplicantId(applicantId);
             foreach (var leavePO in leavePOList)
             {
                 leaves.Add(_leaveFactory.GetLeave(leavePO));
-            }          
+            }
             return leaves;
         }
 

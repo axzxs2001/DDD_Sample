@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Person.Service
 {
-    public class PersonDomainService
+    public class PersonDomainService:IPersonDomainService
     {
 
         readonly IPersonRepository _personRepository;
@@ -17,7 +17,7 @@ namespace Domain.Person.Service
         }
 
 
-        public void create(Entity.Person person)
+        public void Create(Entity.Person person)
         {
             var personPO = _personRepository.FindById(person.PersonId);
             if (null == personPO)

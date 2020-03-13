@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain.SeedWork;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Person.Entity
 {
-    public class Person
+    public class Person : IAggregateRoot
     {
         public string PersonId { get; set; }
         public string PersonName { get; set; }

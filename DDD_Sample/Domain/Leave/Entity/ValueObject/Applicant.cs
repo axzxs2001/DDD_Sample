@@ -4,10 +4,15 @@ using System.Text;
 
 namespace Domain.Leave.Entity.ValueObject
 {
-    public class Applicant
+    public class Applicant : SeedWork.ValueObject
     {
         public string PersonId { get; set; }
         public string PersonName { get; set; }
         public string PersonType { get; set; }
+
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return new object[] { PersonId, PersonName, PersonType };
+        }
     }
 }

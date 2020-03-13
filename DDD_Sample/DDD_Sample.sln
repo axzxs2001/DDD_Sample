@@ -8,11 +8,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E6415D73-D
 		Docs\DDD.pptx = Docs\DDD.pptx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{AD8E35F7-7B11-4588-BF3A-165232046B6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{AD8E35F7-7B11-4588-BF3A-165232046B6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{AF2C5DE4-E429-4962-8B3F-37F1FF4102BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{AF2C5DE4-E429-4962-8B3F-37F1FF4102BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{538BA9BB-7B86-4E60-9A3A-B47BD2A9D1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{538BA9BB-7B86-4E60-9A3A-B47BD2A9D1C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces.WebAPI", "Interfaces.WebAPI\Interfaces.WebAPI.csproj", "{E8ACD771-62A4-428F-8A7F-69B0E70EC427}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{538BA9BB-7B86-4E60-9A3A-B47BD2A9D1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{538BA9BB-7B86-4E60-9A3A-B47BD2A9D1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{538BA9BB-7B86-4E60-9A3A-B47BD2A9D1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8ACD771-62A4-428F-8A7F-69B0E70EC427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8ACD771-62A4-428F-8A7F-69B0E70EC427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8ACD771-62A4-428F-8A7F-69B0E70EC427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8ACD771-62A4-428F-8A7F-69B0E70EC427}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

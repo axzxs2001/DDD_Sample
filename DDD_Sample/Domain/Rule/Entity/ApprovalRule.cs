@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain.SeedWork;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Rule.Entity
 {
-    public class ApprovalRule
+    public class ApprovalRule : IAggregateRoot
     {
 
         public string PersonType { get; set; }

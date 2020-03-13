@@ -1,11 +1,12 @@
 ﻿using Domain.Leave.Entity.ValueObject;
+using Domain.SeedWork;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Leave.Entity
 {
-    public class Leave
+    public class Leave : IAggregateRoot
     {
         public string Id { get; set; }
         public Applicant Applicant { get; set; }
