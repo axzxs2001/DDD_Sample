@@ -23,8 +23,8 @@ namespace Interfaces.WebAPI.Assembler
         {
             var applicant = new Applicant()
             {
-                PersonId = dto.getPersonId,
-                PersonName = dto.getPersonName
+                PersonId = dto.PersonId,
+                PersonName = dto.PersonName
             };
             return applicant;
         }

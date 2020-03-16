@@ -7,9 +7,9 @@ namespace Domain.Person.Repository.Facade
 {
     public interface IPersonRepository
     {
-        void Insert(PersonPO personPO);
+        bool Insert(PersonPO personPO);
 
-        void Update(PersonPO personPO);
+        bool Update(PersonPO personPO);
 
         PersonPO FindById(String id);
 

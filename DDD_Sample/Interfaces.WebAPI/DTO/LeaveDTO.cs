@@ -1,4 +1,4 @@
-﻿using System{get;set;}
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 

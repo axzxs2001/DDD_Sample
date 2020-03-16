@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Person.Entity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace Domain.Leave.Entity.ValueObject
     {
         public string PersonId { get; set; }
         public string PersonName { get; set; }
-        public string PersonType { get; set; }
+        public PersonType PersonType { get; set; }
 
         protected override IEnumerable<object> GetAtomicValues()
         {

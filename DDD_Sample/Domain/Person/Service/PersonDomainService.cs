@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Person.Service
 {
-    public class PersonDomainService:IPersonDomainService
+    public class PersonDomainService : IPersonDomainService
     {
 
         readonly IPersonRepository _personRepository;
@@ -42,10 +42,10 @@ namespace Domain.Person.Service
             _personRepository.Update(_personFactory.CreatePersonPO(person));
         }
 
-        public Entity.Person findById(String userId)
+        public Entity.Person FindById(String userId)
         {
             var personPO = _personRepository.FindById(userId);
-            return _personFactory.getPerson(personPO);
+            return _personFactory.GetPerson(personPO);
         }
 
         /**
@@ -58,7 +58,7 @@ namespace Domain.Person.Service
         public Entity.Person FindFirstApprover(string applicantId, int leaderMaxLevel)
         {
             var leaderPO = _personRepository.FindLeaderByPersonId(applicantId);
-            if (leaderPO.getRoleLevel() > leaderMaxLevel)
+            if (leaderPO.RoleLevel > leaderMaxLevel)
             {
                 return null;
             }
@@ -87,6 +87,5 @@ namespace Domain.Person.Service
                 return _personFactory.CreatePerson(leaderPO);
             }
         }
-
     }
 }

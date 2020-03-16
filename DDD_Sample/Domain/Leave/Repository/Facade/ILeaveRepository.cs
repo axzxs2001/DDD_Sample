@@ -7,9 +7,9 @@ namespace Domain.Leave.Repository.Facade
 {
     public interface ILeaveRepository
     {
-        void Save(LeavePO leavePO);
+        bool Save(LeavePO leavePO);
 
-        void SaveEvent(LeaveEventPO leaveEventPO);
+        bool SaveEvent(LeaveEventPO leaveEventPO);
 
         LeavePO FindById(string id);
 

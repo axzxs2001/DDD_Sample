@@ -29,7 +29,7 @@ namespace Application
         public void CreateLeaveInfo(Domain.Leave.Entity.Leave leave)
         {
             //get approval leader max level by rule
-            var leaderMaxLevel = _approvalRuleDomainService.GetLeaderMaxLevel(leave.Applicant.PersonType, leave.Type.ToString(), leave.Duration);
+            var leaderMaxLevel = _approvalRuleDomainService.GetLeaderMaxLevel(leave.Applicant.PersonType, leave.Type, leave.Duration);
             //find next approver
             var approver = _personDomainService.FindFirstApprover(leave.Applicant.PersonId, leaderMaxLevel);
             _leaveDomainService.CreateLeave(leave, leaderMaxLevel, Approver.FromPerson(approver));

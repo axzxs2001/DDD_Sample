@@ -1,4 +1,6 @@
-﻿using Domain.SeedWork;
+﻿using Domain.Leave.Entity.ValueObject;
+using Domain.Person.Entity;
+using Domain.SeedWork;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +10,8 @@ namespace Domain.Rule.Entity
     public class ApprovalRule : IAggregateRoot
     {
 
-        public string PersonType { get; set; }
-        public string LeaveType { get; set; }
+        public PersonType PersonType { get; set; }
+        public LeaveType LeaveType { get; set; }
         public double Duration { get; set; }
         public int MaxLeaderLevel { get; set; }
 
@@ -18,7 +20,7 @@ namespace Domain.Rule.Entity
             ApprovalRule rule = new ApprovalRule()
             {
                 PersonType = leave.Applicant.PersonType,
-                LeaveType = leave.Type.ToString(),
+                LeaveType = leave.Type,
                 Duration = leave.Duration
             };
             return rule;

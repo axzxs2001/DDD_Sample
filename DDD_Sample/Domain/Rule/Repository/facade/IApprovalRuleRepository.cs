@@ -9,3 +9,4 @@ namespace Domain.Rule.Repository.facade
     {
         int GetLeaderMaxLevel(ApprovalRule rule);
     }
+}

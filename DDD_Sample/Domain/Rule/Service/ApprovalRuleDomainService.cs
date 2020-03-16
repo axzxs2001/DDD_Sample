@@ -1,4 +1,6 @@
-﻿using Domain.Rule.Entity;
+﻿using Domain.Leave.Entity.ValueObject;
+using Domain.Person.Entity;
+using Domain.Rule.Entity;
 using Domain.Rule.Repository.facade;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ namespace Domain.Rule.Service
             _approvalRuleRepository = approvalRuleRepository;
         }
 
-        public int GetLeaderMaxLevel(string personType, string leaveType, double duration)
+        public int GetLeaderMaxLevel(PersonType personType, LeaveType leaveType, double duration)
         {
             var rule = new ApprovalRule()
             {

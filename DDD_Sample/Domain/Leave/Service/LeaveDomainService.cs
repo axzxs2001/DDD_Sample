@@ -94,7 +94,7 @@ namespace Domain.Leave.Service
             return leaves;
         }
 
-        public List<Entity.Leave> queryLeaveInfosByApprover(string approverId)
+        public List<Entity.Leave> QueryLeaveInfosByApprover(string approverId)
         {
             var leaves = new List<Entity.Leave>();
             var leavePOList = _leaveRepository.QueryByApproverId(approverId);
@@ -103,6 +103,6 @@ namespace Domain.Leave.Service
                 leaves.Add(_leaveFactory.GetLeave(leavePO));
             }
             return leaves;
-        }
+        }      
     }
 }

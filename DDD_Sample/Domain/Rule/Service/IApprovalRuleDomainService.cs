@@ -1,4 +1,6 @@
-﻿using Domain.Rule.Entity;
+﻿using Domain.Leave.Entity.ValueObject;
+using Domain.Person.Entity;
+using Domain.Rule.Entity;
 using Domain.Rule.Repository.facade;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,6 @@ namespace Domain.Rule.Service
 {
     public interface IApprovalRuleDomainService
     {
-        int GetLeaderMaxLevel(string personType, string leaveType, double duration);
+        int GetLeaderMaxLevel(PersonType personType, LeaveType leaveType, double duration);
     }
 }
