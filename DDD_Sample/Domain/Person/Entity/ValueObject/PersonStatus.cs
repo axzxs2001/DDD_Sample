@@ -6,7 +6,13 @@ namespace Domain.Person.Entity
 {
     public enum PersonStatus
     {
+        /// <summary>
+        /// 启用
+        /// </summary>
         ENABLE,
+        /// <summary>
+        /// 禁用
+        /// </summary>
         DISABLE
     }
 }

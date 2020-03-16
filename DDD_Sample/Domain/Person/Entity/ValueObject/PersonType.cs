@@ -6,7 +6,13 @@ namespace Domain.Person.Entity
 {
     public enum PersonType
     {
-        INTERNAL, 
+        /// <summary>
+        /// 内部
+        /// </summary>
+        INTERNAL,
+        /// <summary>
+        /// 外部
+        /// </summary>
         EXTERNAL
     }
 }

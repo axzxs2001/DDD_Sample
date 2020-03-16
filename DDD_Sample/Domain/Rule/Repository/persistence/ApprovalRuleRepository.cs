@@ -1,11 +1,12 @@
 ﻿using Domain.Rule.Entity;
+using Domain.Rule.Repository.facade;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Rule.Repository.persistence
 {
-    public class ApprovalRuleRepository
+    public class ApprovalRuleRepository: IApprovalRuleRepository
     {
         public int GetLeaderMaxLevel(ApprovalRule rule)
         {

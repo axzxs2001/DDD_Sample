@@ -6,8 +6,17 @@ namespace Domain.Leave.Entity.ValueObject
 {
     public enum LeaveType
     {
-        Internal, 
-        External, 
+        /// <summary>
+        /// 内部
+        /// </summary>
+        Internal,
+        /// <summary>
+        /// 外部
+        /// </summary>
+        External,
+        /// <summary>
+        /// 官方
+        /// </summary>
         Official
     }
 }

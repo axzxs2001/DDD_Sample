@@ -11,6 +11,6 @@ namespace Domain.Leave.Entity
         public Approver Approver { get; set; }
         public ApprovalType ApprovalType { get; set; }
         public string Msg { get; set; }
-        public double Time { get; set; }
+        public long Time { get; set; }
     }
 }

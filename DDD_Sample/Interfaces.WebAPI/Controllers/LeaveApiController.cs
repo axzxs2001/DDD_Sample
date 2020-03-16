@@ -42,7 +42,11 @@ namespace Interfaces.WebAPI.Controllers
             _leaveApplicationService.SubmitApproval(leave);
             return Ok();
         }
-
+        /// <summary>
+        /// 根据请假ID查询请假事项
+        /// </summary>
+        /// <param name="leaveId"></param>
+        /// <returns></returns>
         [HttpPost("/{leaveId}")]
         public IActionResult FindById(string leaveId)
         {
@@ -56,7 +60,7 @@ namespace Interfaces.WebAPI.Controllers
          * @return
          */
         [HttpPost("/query/applicant/{applicantId}")]
-        public IActionResult queryByApplicant(string applicantId)
+        public IActionResult QueryByApplicant(string applicantId)
         {
             var leaveList = _leaveApplicationService.QueryLeaveInfosByApplicant(applicantId);
             var leaveDTOList = new List<LeaveDTO>();

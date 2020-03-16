@@ -8,7 +8,7 @@ using Domain.Person.Repository.PO;
 
 namespace Domain.Person.Service
 {
-    public class PersonFactory
+    public class PersonFactory:IPersonFactory
     {
         readonly IPersonRepository _personRepository;
         public PersonFactory(IPersonRepository personRepository)
@@ -27,7 +27,7 @@ namespace Domain.Person.Service
             return personPO;
         }
 
-        public Person.Entity.Person CreatePerson(PersonPO po)
+        public Entity.Person CreatePerson(PersonPO po)
         {
             var person = new Person.Entity.Person();
             person.PersonId = po.PersonId;
@@ -40,7 +40,7 @@ namespace Domain.Person.Service
             return person;
         }
 
-        public Person.Entity.Person GetPerson(PersonPO personPO)
+        public Entity.Person GetPerson(PersonPO personPO)
         {
             personPO = _personRepository.FindById(personPO.PersonId);
             return CreatePerson(personPO);

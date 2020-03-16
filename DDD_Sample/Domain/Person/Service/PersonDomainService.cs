@@ -20,11 +20,11 @@ namespace Domain.Person.Service
         public void Create(Entity.Person person)
         {
             var personPO = _personRepository.FindById(person.PersonId);
-            if (null == personPO)
+            if (null != personPO)
             {
                 throw new Exception("Person already exists");
             }
-            person.create();
+            person.Create();
             _personRepository.Insert(_personFactory.CreatePersonPO(person));
         }
 

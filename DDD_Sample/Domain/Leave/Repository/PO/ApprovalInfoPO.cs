@@ -13,6 +13,6 @@ namespace Domain.Leave.Repository.PO
         public int ApproverLevel { get; set; }
         public String ApproverName { get; set; }
         public String Msg { get; set; }
-        public double Time { get; set; }
+        public long Time { get; set; }
     }
 }

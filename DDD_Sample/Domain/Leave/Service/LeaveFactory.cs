@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Domain.Leave.Service
 {
-    public class LeaveFactory
+    public class LeaveFactory: ILeaveFactory
     {
         public LeavePO CreateLeavePO(Leave.Entity.Leave leave)
         {

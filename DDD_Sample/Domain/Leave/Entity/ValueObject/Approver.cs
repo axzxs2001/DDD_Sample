@@ -4,8 +4,12 @@ using System.Text;
 
 namespace Domain.Leave.Entity.ValueObject
 {
+    /// <summary>
+    ///批准人 
+    /// </summary>
     public class Approver : SeedWork.ValueObject
     {
+       
         public string PersonId { get; set; }
         public string PersonName { get; set; }
         public int Level { set; get; }

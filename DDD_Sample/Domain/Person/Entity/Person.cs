@@ -16,21 +16,21 @@ namespace Domain.Person.Entity
         public DateTime LastModifyTime { get; set; }
         public PersonStatus Status { get; set; }
 
-        public Person create()
+        public Person Create()
         {
             this.CreateTime = DateTime.Now;
             this.Status = PersonStatus.ENABLE;
             return this;
         }
 
-        public Person enable()
+        public Person Enable()
         {
             this.LastModifyTime = DateTime.Now;
             this.Status = PersonStatus.ENABLE;
             return this;
         }
 
-        public Person disable()
+        public Person Disable()
         {
             this.LastModifyTime = DateTime.Now;
             this.Status = PersonStatus.DISABLE;
