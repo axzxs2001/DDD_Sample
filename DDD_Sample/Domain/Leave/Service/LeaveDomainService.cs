@@ -10,13 +10,13 @@ namespace Domain.Leave.Service
 {
     public class LeaveDomainService : ILeaveDomainService
     {
-        readonly EventPublisher _eventPublisher;
+        readonly IEventPublisher _eventPublisher;
 
         readonly ILeaveRepository _leaveRepository;
 
-        readonly LeaveFactory _leaveFactory;
+        readonly ILeaveFactory _leaveFactory;
 
-        public LeaveDomainService(EventPublisher eventPublisher, ILeaveRepository leaveRepository, LeaveFactory leaveFactory)
+        public LeaveDomainService(IEventPublisher eventPublisher, ILeaveRepository leaveRepository, ILeaveFactory leaveFactory)
         {
             _eventPublisher = eventPublisher;
             _leaveRepository = leaveRepository;
@@ -24,9 +24,9 @@ namespace Domain.Leave.Service
         }
 
 
-        public void CreateLeave(Entity.Leave leave, int leaderMaxLevel, Approver approver)
+        public void CreateLeave(Entity.Leave leave, int maxLeaderLevel, Approver approver)
         {
-            leave.LeaderMaxLevel = leaderMaxLevel;
+            leave.MaxLeaderLevel = maxLeaderLevel;
             leave.Approver = approver;
             leave.Create();
             _leaveRepository.Save(_leaveFactory.CreateLeavePO(leave));
@@ -72,7 +72,7 @@ namespace Domain.Leave.Service
                 }
             }
             leave.AddHistoryApprovalInfo(leave.CurrentApprovalInfo);
-            _leaveRepository.Save(_leaveFactory.CreateLeavePO(leave));
+            _leaveRepository.Submit(_leaveFactory.CreateLeavePO(leave));
             _leaveRepository.SaveEvent(_leaveFactory.CreateLeaveEventPO(@event));
             _eventPublisher.Publish(@event);
         }
@@ -103,6 +103,6 @@ namespace Domain.Leave.Service
                 leaves.Add(_leaveFactory.GetLeave(leavePO));
             }
             return leaves;
-        }      
+        }
     }
 }

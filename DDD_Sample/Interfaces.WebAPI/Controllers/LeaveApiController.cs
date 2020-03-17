@@ -14,14 +14,16 @@ namespace Interfaces.WebAPI.Controllers
     [Route("[controller]")]
     public class LeaveApiController : ControllerBase
     {
+        readonly ILogger<LeaveApiController> _logger;
         readonly ILeaveApplicationService _leaveApplicationService;
-        public LeaveApiController(ILeaveApplicationService leaveApplicationService)
+        public LeaveApiController(ILeaveApplicationService leaveApplicationService,ILogger<LeaveApiController> logger)
         {
+            _logger = logger;
             _leaveApplicationService = leaveApplicationService;
         }
-        [HttpPost]
-        public IActionResult CreateLeaveInfo(LeaveDTO leaveDTO)
-        {
+        [HttpPost("/leave")]
+        public IActionResult CreateLeaveInfo([FromBody]LeaveDTO leaveDTO)
+        { 
             var leave = LeaveAssembler.ToDO(leaveDTO);
             _leaveApplicationService.CreateLeaveInfo(leave);
             return Ok();
@@ -47,7 +49,7 @@ namespace Interfaces.WebAPI.Controllers
         /// </summary>
         /// <param name="leaveId"></param>
         /// <returns></returns>
-        [HttpPost("/{leaveId}")]
+        [HttpGet("/{leaveId}")]
         public IActionResult FindById(string leaveId)
         {
             var leave = _leaveApplicationService.GetLeaveInfo(leaveId);
@@ -59,7 +61,7 @@ namespace Interfaces.WebAPI.Controllers
          * @param applicantId
          * @return
          */
-        [HttpPost("/query/applicant/{applicantId}")]
+        [HttpGet("/query/applicant/{applicantId}")]
         public IActionResult QueryByApplicant(string applicantId)
         {
             var leaveList = _leaveApplicationService.QueryLeaveInfosByApplicant(applicantId);
@@ -76,7 +78,7 @@ namespace Interfaces.WebAPI.Controllers
          * @param approverId
          * @return
          */
-        [HttpPost("/query/approver/{approverId}")]
+        [HttpGet("/query/approver/{approverId}")]
         public IActionResult QueryByApprover(string approverId)
         {
             var leaveList = _leaveApplicationService.QueryLeaveInfosByApprover(approverId);

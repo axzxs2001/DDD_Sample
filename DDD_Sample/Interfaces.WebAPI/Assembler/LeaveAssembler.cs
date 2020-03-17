@@ -18,14 +18,17 @@ namespace Interfaces.WebAPI.Assembler
             }
             var dto = new LeaveDTO()
             {
+                ApplicantDTO = ApplicantAssembler.ToDTO(leave.Applicant),
+                ApproverDTO = ApproverAssembler.ToDTO(leave.Approver),
                 LeaveId = leave.Id,
-                LeaveType = leave.Type.ToString(),
-                Status = leave.Status.ToString(),
+                LeaveType = leave.LeaveType,
+                Status = leave.Status,
                 StartTime = leave.StartTime.ToString("yyyy-MM-dd HH:mm:ss"),
                 EndTime = leave.EndTime.ToString("yyyy-MM-dd HH:mm:ss"),
                 CurrentApprovalInfoDTO = ApprovalInfoAssembler.ToDTO(leave.CurrentApprovalInfo),
                 HistoryApprovalInfoDTOList = approvalInfos,
-                Duration = leave.Duration
+                Duration = leave.Duration,
+                MaxLeaderLevel = leave.MaxLeaderLevel
             };
             return dto;
         }
@@ -33,6 +36,7 @@ namespace Interfaces.WebAPI.Assembler
         public static Leave ToDO(LeaveDTO dto)
         {
             var historyApprovalInfoDTOList = new List<ApprovalInfo>();
+
             foreach (var historyApprovalInfoDTO in dto.HistoryApprovalInfoDTOList)
             {
                 historyApprovalInfoDTOList.Add(ApprovalInfoAssembler.ToDO(historyApprovalInfoDTO));
@@ -43,8 +47,12 @@ namespace Interfaces.WebAPI.Assembler
                 Applicant = ApplicantAssembler.ToDO(dto.ApplicantDTO),
                 Approver = ApproverAssembler.ToDO(dto.ApproverDTO),
                 CurrentApprovalInfo = ApprovalInfoAssembler.ToDO(dto.CurrentApprovalInfoDTO),
-                HistoryApprovalInfos = historyApprovalInfoDTOList
-            };  
+                HistoryApprovalInfos = historyApprovalInfoDTOList,
+                StartTime = string.IsNullOrEmpty(dto.StartTime) ? DateTime.Now : DateTime.Parse(dto.StartTime),
+                EndTime = string.IsNullOrEmpty(dto.EndTime) ? DateTime.Now : DateTime.Parse(dto.EndTime),
+                MaxLeaderLevel=dto.MaxLeaderLevel
+            };
+            leave.Duration = leave.GetDuration();
             return leave;
         }
     }

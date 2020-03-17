@@ -5,6 +5,7 @@ using Domain.Person.Entity;
 using Domain.Person.Repository.Facade;
 using Domain.Person.Repository.Persistence;
 using Domain.Person.Repository.PO;
+using Infrastructure.Util;
 
 namespace Domain.Person.Service
 {
@@ -24,6 +25,9 @@ namespace Domain.Person.Service
             personPO.PersonType = person.PersonType;
             personPO.CreateTime = person.CreateTime;
             personPO.LastModifyTime = person.LastModifyTime;
+            //补充信息
+            personPO.DepartmentId = "dep001";//默认部门
+            personPO.LeaderId = IdGenerator.NextId();
             return personPO;
         }
 
@@ -34,7 +38,7 @@ namespace Domain.Person.Service
             person.PersonType = po.PersonType;
             person.RoleLevel = po.RoleLevel;
             person.PersonName = po.PersonName;
-            person.Status = po.Status;
+            person.Status = po.PersonStatus;
             person.CreateTime = po.CreateTime;
             person.LastModifyTime = po.LastModifyTime;
             return person;

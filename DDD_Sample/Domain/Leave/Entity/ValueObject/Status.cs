@@ -12,14 +12,14 @@ namespace Domain.Leave.Entity.ValueObject
         /// <summary>
         /// 审批中
         /// </summary>
-        APPROVING,
+        APPROVING=0,
         /// <summary>
         /// 已审批
         /// </summary>
-        APPROVED, 
+        APPROVED=1, 
         /// <summary>
         /// 拒绝
         /// </summary>
-        REJECTED
+        REJECTED=2
     }
 }

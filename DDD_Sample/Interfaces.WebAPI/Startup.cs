@@ -34,7 +34,7 @@ namespace Interfaces.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationService();
+            services.AddApplicationService(Configuration.GetConnectionString("DefaultConnection"));
             services.AddScoped<ILeaveApplicationService, LeaveApplicationService>();
             services.AddScoped<IPersonApplicationService, PersonApplicationService>();
             services.AddScoped<ILoginApplicationService, LoginApplicationService>();

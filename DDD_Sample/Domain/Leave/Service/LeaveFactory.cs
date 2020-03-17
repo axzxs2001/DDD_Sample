@@ -9,20 +9,27 @@ using System.Text;
 
 namespace Domain.Leave.Service
 {
-    public class LeaveFactory: ILeaveFactory
+    public class LeaveFactory : ILeaveFactory
     {
-        public LeavePO CreateLeavePO(Leave.Entity.Leave leave)
+        public LeavePO CreateLeavePO(Entity.Leave leave)
         {
             var leavePO = new LeavePO()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = leave.Id==null? Guid.NewGuid().ToString():leave.Id,
                 ApplicantId = leave.Applicant.PersonId,
                 ApplicantName = leave.Applicant.PersonName,
                 ApproverId = leave.Approver.PersonId,
                 ApproverName = leave.Approver.PersonName,
                 StartTime = leave.StartTime,
+                EndTime = leave.EndTime,
+                Duration = leave.Duration,
                 Status = leave.Status,
-                HistoryApprovalInfoPOList = ApprovalInfoPOListFromDO(leave)
+                //生成请假条时没有当前批认信息
+                CurrentApprovalInfo = leave.CurrentApprovalInfo != null ? ApprovalInfoPOFromDO(leave.CurrentApprovalInfo, leave.Applicant.PersonId, leave.Id) : null,
+                HistoryApprovalInfoPOList = ApprovalInfoPOListFromDO(leave),
+                MaxLeaderLevel = leave.MaxLeaderLevel,
+                LeaveType = leave.LeaveType,
+                ApplicantType = leave.Applicant.PersonType
             };
             return leavePO;
         }
@@ -30,7 +37,7 @@ namespace Domain.Leave.Service
         public Entity.Leave GetLeave(LeavePO leavePO)
         {
             var leave = new Entity.Leave();
-            //todo 这里是值对象，要对Applicant和Approver进行值对象处理
+            leave.Id = leavePO.Id;
             var applicant = new Applicant()
             {
                 PersonId = leavePO.ApplicantId,
@@ -43,9 +50,15 @@ namespace Domain.Leave.Service
                 PersonName = leavePO.ApproverName
             };
             leave.Approver = approver;
-            leave.StartTime = leave.StartTime;
-            leave.Status = leave.Status;
-            leave.HistoryApprovalInfos = GetApprovalInfos(leavePO.HistoryApprovalInfoPOList);
+            leave.StartTime = leavePO.StartTime;
+            leave.EndTime = leavePO.EndTime;
+            leave.Duration = leavePO.Duration;
+            leave.Status = leavePO.Status;
+            leave.MaxLeaderLevel = leavePO.MaxLeaderLevel;
+            if (leavePO.HistoryApprovalInfoPOList?.Count > 0)
+            {
+                leave.HistoryApprovalInfos = GetApprovalInfos(leavePO.HistoryApprovalInfoPOList);
+            }
             return leave;
         }
 
@@ -71,14 +84,17 @@ namespace Domain.Leave.Service
             return approvalInfoPos;
         }
 
-        private ApprovalInfoPO ApprovalInfoPOFromDO(ApprovalInfo approvalInfo)
+        private ApprovalInfoPO ApprovalInfoPOFromDO(ApprovalInfo approvalInfo, string aplicantId = null, string leaveID = null)
         {
             var approvalInfoPO = new ApprovalInfoPO()
             {
+                ApplicantId = aplicantId,
+                LeaveId = leaveID,
+                ApprovalType = approvalInfo.ApprovalType,
                 ApproverId = approvalInfo.Approver.PersonId,
                 ApproverLevel = approvalInfo.Approver.Level,
                 ApproverName = approvalInfo.Approver.PersonName,
-                ApprovalInfoId = approvalInfo.ApprovalInfoId,
+                ApprovalInfoId = string.IsNullOrEmpty(approvalInfo.ApprovalInfoId)?Guid.NewGuid().ToString(): approvalInfo.ApprovalInfoId,
                 Msg = approvalInfo.Msg,
                 Time = approvalInfo.Time
             };
@@ -106,7 +122,7 @@ namespace Domain.Leave.Service
             var approvalInfos = new List<ApprovalInfo>();
             foreach (var approvalInfo in approvalInfoPOList)
             {
-                approvalInfos.Add(ApprovalInfoFromPO(approvalInfo)); 
+                approvalInfos.Add(ApprovalInfoFromPO(approvalInfo));
             }
             return approvalInfos;
         }

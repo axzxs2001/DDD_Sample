@@ -11,6 +11,6 @@ namespace Interfaces.WebAPI.DTO
         public string PersonName { get; set; }
         public string LeaderId { get; set; }
         public string ApplicantType { get; set; }
-        public string RoleLevel { get; set; }
+        public int RoleLevel { get; set; }
     }
 }

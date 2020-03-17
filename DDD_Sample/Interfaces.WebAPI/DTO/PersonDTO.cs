@@ -8,7 +8,7 @@ namespace Interfaces.WebAPI.DTO
     {
         public string PersonId { get; set; }
         public string PersonName { get; set; }
-        public string RoleId { get; set; }
+        public int RoleLevel { get; set; }
         public string PersonType { get; set; }
         public string CreateTime { get; set; }
         public string LastModifyTime { get; set; }

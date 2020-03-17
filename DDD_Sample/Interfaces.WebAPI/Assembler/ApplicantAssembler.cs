@@ -14,7 +14,10 @@ namespace Interfaces.WebAPI.Assembler
             var dto = new ApplicantDTO()
             {
                 PersonId = applicant.PersonId,
-                PersonName = applicant.PersonName
+                PersonName = applicant.PersonName,
+                ApplicantType = applicant.PersonType.ToString(),
+
+
             };
             return dto;
         }

@@ -8,9 +8,9 @@ namespace Application
 {
     public class PersonApplicationService : IPersonApplicationService
     {
-        readonly PersonDomainService _personDomainService;
+        readonly IPersonDomainService _personDomainService;
 
-        public PersonApplicationService(PersonDomainService personDomainService)
+        public PersonApplicationService(IPersonDomainService personDomainService)
         {
             _personDomainService = personDomainService;
         }

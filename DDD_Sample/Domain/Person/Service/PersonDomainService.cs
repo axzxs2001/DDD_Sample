@@ -9,8 +9,8 @@ namespace Domain.Person.Service
     {
 
         readonly IPersonRepository _personRepository;
-        readonly PersonFactory _personFactory;
-        public PersonDomainService(IPersonRepository personRepository, PersonFactory personFactory)
+        readonly IPersonFactory _personFactory;
+        public PersonDomainService(IPersonRepository personRepository, IPersonFactory personFactory)
         {
             _personRepository = personRepository;
             _personFactory = personFactory;
@@ -55,10 +55,10 @@ namespace Domain.Person.Service
          * @param leaderMaxLevel
          * @return
          */
-        public Entity.Person FindFirstApprover(string applicantId, int leaderMaxLevel)
+        public Entity.Person FindFirstApprover(string applicantId, int maxLeaderLevel)
         {
             var leaderPO = _personRepository.FindLeaderByPersonId(applicantId);
-            if (leaderPO.RoleLevel > leaderMaxLevel)
+            if (leaderPO.RoleLevel > maxLeaderLevel)
             {
                 return null;
             }
@@ -67,14 +67,7 @@ namespace Domain.Person.Service
                 return _personFactory.CreatePerson(leaderPO);
             }
         }
-
-        /**
-         * find leader with current approver, if leader level bigger then leaderMaxLevel return null, else return Approver from leader;
-         *
-         * @param currentApproverId
-         * @param leaderMaxLevel
-         * @return
-         */
+ 
         public Entity.Person FindNextApprover(String currentApproverId, int leaderMaxLevel)
         {
             var leaderPO = _personRepository.FindLeaderByPersonId(currentApproverId);

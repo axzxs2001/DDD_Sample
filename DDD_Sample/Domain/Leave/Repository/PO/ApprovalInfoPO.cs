@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Leave.Entity.ValueObject;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +9,7 @@ namespace Domain.Leave.Repository.PO
     {
         public String ApprovalInfoId { get; set; }
         public String LeaveId { get; set; }
+        public ApprovalType ApprovalType { get; set; }
         public String ApplicantId { get; set; }
         public String ApproverId { get; set; }
         public int ApproverLevel { get; set; }

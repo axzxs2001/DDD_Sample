@@ -18,7 +18,7 @@ namespace Domain.Person.Repository.PO
         public DateTime CreateTime { get; set; }
         public DateTime LastModifyTime { get; set; }
 
-        public PersonStatus Status { get; set; }
+        public PersonStatus PersonStatus { get; set; }
 
         public RelationshipPO RelationshipPO { get; set; }
     }

@@ -30,9 +30,10 @@ namespace Interfaces.WebAPI.Assembler
                 PersonId = dto.PersonId,
                 PersonType = (PersonType)Enum.Parse(typeof(PersonType), dto.PersonType),
                 PersonName = dto.PersonName,
+                RoleLevel=dto.RoleLevel,
                 Status = (PersonStatus)Enum.Parse(typeof(PersonStatus), dto.Status),
-                CreateTime = Convert.ToDateTime(dto.CreateTime),
-                LastModifyTime = Convert.ToDateTime(dto.LastModifyTime)
+                CreateTime = string.IsNullOrEmpty(dto.CreateTime) ? DateTime.Now : Convert.ToDateTime(dto.CreateTime),
+                LastModifyTime = string.IsNullOrEmpty(dto.LastModifyTime) ? DateTime.Now : Convert.ToDateTime(dto.LastModifyTime)
             };
             return person;
         }

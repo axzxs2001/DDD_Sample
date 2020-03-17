@@ -20,7 +20,7 @@ namespace Domain.Rule.Entity
             ApprovalRule rule = new ApprovalRule()
             {
                 PersonType = leave.Applicant.PersonType,
-                LeaveType = leave.Type,
+                LeaveType = leave.LeaveType,
                 Duration = leave.Duration
             };
             return rule;

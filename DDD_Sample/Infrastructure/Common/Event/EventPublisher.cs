@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Infrastructure.Common.Event
 {
-    public class EventPublisher
+    public class EventPublisher : IEventPublisher
     {
         public void Publish(DomainEvent @event)
         {

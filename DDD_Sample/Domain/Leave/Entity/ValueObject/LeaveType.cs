@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Domain.Leave.Entity.ValueObject
 {
+    /// <summary>
+    /// 假条类型
+    /// </summary>
     public enum LeaveType
     {
         /// <summary>

@@ -20,6 +20,11 @@ namespace Domain.Leave.Repository.PO
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public double Duration { get; set; }
+        public int MaxLeaderLevel
+        {
+            get; set;
+        }
+        public ApprovalInfoPO CurrentApprovalInfo { get; set; }
         public List<ApprovalInfoPO> HistoryApprovalInfoPOList;
         public Entity.Leave ToLeave()
         {

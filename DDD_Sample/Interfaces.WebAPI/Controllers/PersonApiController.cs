@@ -2,6 +2,7 @@
 using Interfaces.WebAPI.Assembler;
 using Interfaces.WebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,15 @@ namespace Interfaces.WebAPI.Controllers
 {
     public class PersonApiController : ControllerBase
     {
-
+        readonly ILogger<LeaveApiController> _logger;
         readonly IPersonApplicationService _personApplicationService;
-        public PersonApiController(IPersonApplicationService personApplicationService)
+        public PersonApiController(IPersonApplicationService personApplicationService, ILogger<LeaveApiController> logger)
         {
+            _logger = logger;
             _personApplicationService = personApplicationService;
         }
-        [HttpPost]
-        public IActionResult Create(PersonDTO personDTO)
+        [HttpPost("/person")]
+        public IActionResult Create([FromBody]PersonDTO personDTO)
         {
             try
             {
