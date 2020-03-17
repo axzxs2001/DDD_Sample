@@ -38,7 +38,7 @@ namespace Domain.Person.Service
         {
             var personPO = _personRepository.FindById(personId);
             var person = _personFactory.GetPerson(personPO);
-            person.disable();
+            person.Disable();
             _personRepository.Update(_personFactory.CreatePersonPO(person));
         }
 

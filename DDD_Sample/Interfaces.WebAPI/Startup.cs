@@ -34,13 +34,7 @@ namespace Interfaces.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IPersonFactory, PersonFactory>();
-            services.AddScoped<ILeaveFactory, LeaveFactory>();
-
-            services.AddScoped<ILeaveRepository, LeaveRepository>();
-            services.AddScoped<IPersonRepository, PersonRepository>();
-            services.AddScoped<IApprovalRuleRepository, ApprovalRuleRepository>();
-
+            services.AddApplicationService();
             services.AddScoped<ILeaveApplicationService, LeaveApplicationService>();
             services.AddScoped<IPersonApplicationService, PersonApplicationService>();
             services.AddScoped<ILoginApplicationService, LoginApplicationService>();
