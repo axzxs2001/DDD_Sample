@@ -42,9 +42,9 @@ namespace Domain.Person.Service
             _personRepository.Update(_personFactory.CreatePersonPO(person));
         }
 
-        public Entity.Person FindById(String userId)
+        public Entity.Person FindById(string personId)
         {
-            var personPO = _personRepository.FindById(userId);
+            var personPO = _personRepository.FindById(personId);
             return _personFactory.GetPerson(personPO);
         }
 
@@ -67,17 +67,24 @@ namespace Domain.Person.Service
                 return _personFactory.CreatePerson(leaderPO);
             }
         }
- 
-        public Entity.Person FindNextApprover(String currentApproverId, int leaderMaxLevel)
+
+        public Entity.Person FindNextApprover(string currentApproverId, int leaderMaxLevel)
         {
             var leaderPO = _personRepository.FindLeaderByPersonId(currentApproverId);
-            if (leaderPO.RoleLevel > leaderMaxLevel)
+            if (leaderPO == null)
             {
                 return null;
             }
             else
             {
-                return _personFactory.CreatePerson(leaderPO);
+                if (leaderPO.RoleLevel > leaderMaxLevel)
+                {
+                    return null;
+                }
+                else
+                {
+                    return _personFactory.CreatePerson(leaderPO);
+                }
             }
         }
     }

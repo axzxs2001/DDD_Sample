@@ -15,11 +15,11 @@ namespace Domain.Leave.Service
         {
             var leavePO = new LeavePO()
             {
-                Id = leave.Id==null? Guid.NewGuid().ToString():leave.Id,
+                Id = leave.Id == null ? Guid.NewGuid().ToString() : leave.Id,
                 ApplicantId = leave.Applicant.PersonId,
                 ApplicantName = leave.Applicant.PersonName,
-                ApproverId = leave.Approver.PersonId,
-                ApproverName = leave.Approver.PersonName,
+                ApproverId = leave.Approver?.PersonId,
+                ApproverName = leave.Approver?.PersonName,
                 StartTime = leave.StartTime,
                 EndTime = leave.EndTime,
                 Duration = leave.Duration,
@@ -92,9 +92,9 @@ namespace Domain.Leave.Service
                 LeaveId = leaveID,
                 ApprovalType = approvalInfo.ApprovalType,
                 ApproverId = approvalInfo.Approver.PersonId,
-                ApproverLevel = approvalInfo.Approver.Level,
+                ApproverLevel = approvalInfo.ApproverLevel,
                 ApproverName = approvalInfo.Approver.PersonName,
-                ApprovalInfoId = string.IsNullOrEmpty(approvalInfo.ApprovalInfoId)?Guid.NewGuid().ToString(): approvalInfo.ApprovalInfoId,
+                ApprovalInfoId = string.IsNullOrEmpty(approvalInfo.ApprovalInfoId) ? Guid.NewGuid().ToString() : approvalInfo.ApprovalInfoId,
                 Msg = approvalInfo.Msg,
                 Time = approvalInfo.Time
             };

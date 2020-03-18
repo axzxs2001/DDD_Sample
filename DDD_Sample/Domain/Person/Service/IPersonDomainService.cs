@@ -10,25 +10,11 @@ namespace Domain.Person.Service
         void Create(Entity.Person person);
         void Update(Entity.Person person);
 
-        void DeleteById(String personId);
-        Entity.Person FindById(String userId);
-        /**
-         * find leader with applicant, if leader level bigger then leaderMaxLevel return null, else return Approver from leader;
-         *
-         * @param applicantId
-         * @param leaderMaxLevel
-         * @return
-         */
+        void DeleteById(string personId);
+        Entity.Person FindById(string personId);
+    
         Entity.Person FindFirstApprover(string applicantId, int leaderMaxLevel);
-
-        /**
-         * find leader with current approver, if leader level bigger then leaderMaxLevel return null, else return Approver from leader;
-         *
-         * @param currentApproverId
-         * @param leaderMaxLevel
-         * @return
-         */
-        Entity.Person FindNextApprover(String currentApproverId, int leaderMaxLevel);
+        Entity.Person FindNextApprover(string currentApproverId, int leaderMaxLevel);
 
     }
 }

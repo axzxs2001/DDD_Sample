@@ -22,12 +22,17 @@ namespace Application
             _personDomainService = personDomainService;
         }
 
- 
+
         public void CreateLeaveInfo(Domain.Leave.Entity.Leave leave)
         {
-        
-            var maxLeaderLevel = _approvalRuleDomainService.GetLeaderMaxLevel(leave.Applicant.PersonType, leave.LeaveType, leave.Duration);        
+
+            var maxLeaderLevel = _approvalRuleDomainService.GetLeaderMaxLevel(leave.Applicant.PersonType, leave.LeaveType, leave.Duration);
             var approver = _personDomainService.FindFirstApprover(leave.Applicant.PersonId, maxLeaderLevel);
+            //查贸易
+            //if（approver == null)
+            //{
+            //    approver = leave.Approver;
+            //}
             _leaveDomainService.CreateLeave(leave, maxLeaderLevel, Approver.FromPerson(approver));
         }
 
@@ -35,10 +40,13 @@ namespace Application
         {
             _leaveDomainService.UpdateLeaveInfo(leave);
         }
-         
+
         public void SubmitApproval(Domain.Leave.Entity.Leave leave)
-        {          
+        {
+            //获取下一个批准人
             var approver = _personDomainService.FindNextApprover(leave.Approver.PersonId, leave.MaxLeaderLevel);
+            //获取批准人级别
+            leave.CurrentApprovalInfo.ApproverLevel = _personDomainService.FindById(leave.Approver.PersonId).RoleLevel;
             _leaveDomainService.SubmitApproval(leave, Approver.FromPerson(approver));
         }
 

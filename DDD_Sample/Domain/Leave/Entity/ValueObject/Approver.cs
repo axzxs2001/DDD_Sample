@@ -9,9 +9,9 @@ namespace Domain.Leave.Entity.ValueObject
     /// </summary>
     public class Approver : SeedWork.ValueObject
     {
-       /// <summary>
-       /// 人员ID
-       /// </summary>
+        /// <summary>
+        /// 人员ID
+        /// </summary>
         public string PersonId { get; set; }
         /// <summary>
         /// 人员名称
@@ -28,11 +28,18 @@ namespace Domain.Leave.Entity.ValueObject
         /// <returns></returns>
         public static Approver FromPerson(Person.Entity.Person person)
         {
-            var approver = new Approver();
-            approver.PersonId = person.PersonId;
-            approver.PersonName = person.PersonName;
-            approver.Level = person.RoleLevel;
-            return approver;
+            if (person == null)
+            {
+                return null;
+            }
+            else
+            {
+                var approver = new Approver();
+                approver.PersonId = person.PersonId;
+                approver.PersonName = person.PersonName;
+                approver.Level = person.RoleLevel;
+                return approver;
+            }
         }
         /// <summary>
         /// 遍历属性

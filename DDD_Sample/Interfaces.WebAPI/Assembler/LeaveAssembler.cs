@@ -41,6 +41,7 @@ namespace Interfaces.WebAPI.Assembler
             {
                 historyApprovalInfoDTOList.Add(ApprovalInfoAssembler.ToDO(historyApprovalInfoDTO));
             }
+        
             var leave = new Leave()
             {
                 Id = dto.LeaveId,

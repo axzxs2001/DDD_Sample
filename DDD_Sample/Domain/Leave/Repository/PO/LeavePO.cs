@@ -26,9 +26,6 @@ namespace Domain.Leave.Repository.PO
         }
         public ApprovalInfoPO CurrentApprovalInfo { get; set; }
         public List<ApprovalInfoPO> HistoryApprovalInfoPOList;
-        public Entity.Leave ToLeave()
-        {
-            return new Entity.Leave();
-        }
+       
     }
 }

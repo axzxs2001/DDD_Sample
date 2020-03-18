@@ -18,6 +18,12 @@ namespace Domain.Leave.Entity
         /// 批准人
         /// </summary>
         public Approver Approver { get; set; }
+
+        /// <summary>
+        /// 批准人级别
+        /// </summary>
+        public int ApproverLevel { get; set; }
+
         /// <summary>
         /// 批准类型
         /// </summary>

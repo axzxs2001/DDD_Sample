@@ -75,13 +75,12 @@ namespace Domain.Leave.Entity
             return this;
         }
         /// <summary>
-        /// 更新案件状态和开始时间
+        /// 更新案件状态
         /// </summary>
         /// <returns></returns>
         public Leave Create()
         {
-            this.Status = Status.APPROVING;
-            this.StartTime = DateTime.Now;
+            this.Status = Status.APPROVING;           
             return this;
         }
         /// <summary>

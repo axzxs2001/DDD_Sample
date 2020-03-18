@@ -49,30 +49,45 @@ namespace Domain.Leave.Service
 
         public void SubmitApproval(Entity.Leave leave, Approver approver)
         {
+            if (leave.CurrentApprovalInfo != null)
+            {   
+              
+                //根据当前审批信息，确定案件状态
+                switch (leave.CurrentApprovalInfo.ApprovalType)
+                {
+                    case ApprovalType.REJECT:
+                        leave.Status = Status.REJECTED;                      
+                        break;
+                    case ApprovalType.AGREE:
+                        leave.Status = Status.APPROVED;
+                        break;
+                }
+            }
             LeaveEvent @event;
             if (ApprovalType.REJECT == leave.CurrentApprovalInfo.ApprovalType)
             {
-                //reject, then the leave is finished with REJECTED status
-                leave.Reject(approver);
+                //拒约后保持原来批准人
+                leave.Reject(leave.Approver);
                 @event = LeaveEvent.Create(LeaveEventType.REJECT_EVENT, leave);
             }
             else
             {
                 if (approver != null)
-                {
-                    //agree and has next approver
+                {             
+                    //通过后更换下一审批人
                     leave.Agree(approver);
                     @event = LeaveEvent.Create(LeaveEventType.AGREE_EVENT, leave);
                 }
                 else
-                {
-                    //agree and hasn't next approver, then the leave is finished with APPROVED status
+                {                   
                     leave.Finish();
                     @event = LeaveEvent.Create(LeaveEventType.APPROVED_EVENT, leave);
                 }
             }
             leave.AddHistoryApprovalInfo(leave.CurrentApprovalInfo);
-            _leaveRepository.Submit(_leaveFactory.CreateLeavePO(leave));
+            var leavePO = _leaveFactory.CreateLeavePO(leave);
+         
+            _leaveRepository.Submit(leavePO);
             _leaveRepository.SaveEvent(_leaveFactory.CreateLeaveEventPO(@event));
             _eventPublisher.Publish(@event);
         }

@@ -46,8 +46,7 @@ namespace Domain.Leave.Repository.Persistence
             }
             var tran = _db.BeginTransaction();
             try
-            {
-                //枚举有坑
+            {             
                 var i = (int)leavePO.Status;
                 var sql = @"update public.leaves set
 	 applicantid=@applicantid, applicantname=@applicantname, applicanttype=@applicanttype, approverid=@approverid, approvername=@approvername, leavetype=@leavetype, status=@Status, starttime=@starttime, endtime=@endtime, duration=@duration,maxleaderlevel=@maxleaderlevel where id=@id;";
