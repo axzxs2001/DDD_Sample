@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "4d11ab04-3c89-431b-a03a-9e65c46071ad",
+		"name": "LeaveDDD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5168/person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5168/person",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5168",
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5168/leave",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"LeaveId\":\"3fcc6a52-a215-4411-9ea7-ae0b9be71cc7\",\r\n    \"ApplicantDTO\":{\r\n    \t\"PersonId\":\"ea5bf546-3c9f-4f0f-8739-d64cccdfc418\",\r\n    \t\"PersonName\":\"人员1\",\r\n    \t\"LeaderId\":\"2f7fd63f-2775-414b-b3f9-9898d3491ea7\",\r\n    \t\"ApplicantType\":\"INTERNAL\",\r\n    \t\"RoleLevel\":1\r\n    },\r\n    \"ApproverDTO\":{\r\n    \t\"PersonId\":\"\",\r\n    \t\"PersonName\":\"\"\r\n    },\r\n    \"LeaveType\":0,\r\n    \"StartTime\":\"2020-03-17 08:00:00\",\r\n    \"EndTime\":\"2020-03-20 08:00:00\",\r\n    \"Duration\":3,\r\n    \"Status\":0\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5168/leave",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5168",
+					"path": [
+						"leave"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5168/submit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n        {\n         \"leaveId\": \"3fcc6a52-a215-4411-9ea7-ae0b9be71cc7\",\n        \"applicantDTO\": {\n            \"personId\": \"ea5bf546-3c9f-4f0f-8739-d64cccdfc418\",\n            \"personName\": \"人员1\",\n            \"leaderId\": null,\n            \"applicantType\": \"INTERNAL\",\n            \"roleLevel\": 0\n        },\n        \"approverDTO\": {\n            \"personId\": \"95b103f1-9868-4cdb-836d-3e574212057f\",\n            \"personName\": \"人员2\"\n        },\n        \"leaveType\": 0,\n        \"maxLeaderLevel\": 3,\n        \"currentApprovalInfoDTO\": null,\n        \"historyApprovalInfoDTOList\": [],\n        \"startTime\": \"2020-03-18 20:52:47\",\n        \"endTime\": \"2020-03-20 17:00:00\",\n        \"duration\": 3,\n        \"status\": 0,\n        \"CurrentApprovalInfoDTO\": {\n        \t\"ApprovalInfoId\":\"\",\n        \t\"ApproverDTO\":{\n            \"personId\": \"95b103f1-9868-4cdb-836d-3e574212057f\",\n            \"personName\": \"人员2\"\n            },\n        \t\"Msg\":\"同意\",\n        \t\"ApprovalType\":0,\n        \t\"Time\":0\n        }\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:5168/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5168",
+					"path": [
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5168/query/approver/95b103f1-9868-4cdb-836d-3e574212057f",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5168/query/approver/95b103f1-9868-4cdb-836d-3e574212057f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5168",
+					"path": [
+						"query",
+						"approver",
+						"95b103f1-9868-4cdb-836d-3e574212057f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5168/submit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"leaveId\": \"3fcc6a52-a215-4411-9ea7-ae0b9be71cc7\",\n        \"applicantDTO\": {\n            \"personId\": \"ea5bf546-3c9f-4f0f-8739-d64cccdfc418\",\n            \"personName\": \"人员1\",\n            \"leaderId\": null,\n            \"applicantType\": \"INTERNAL\",\n            \"roleLevel\": 0\n        },\n        \"approverDTO\": {\n            \"personId\": \"b5c7283d-e6a3-45e0-8132-1fd024ccda0d\",\n            \"personName\": \"人员3\"\n        },\n        \"leaveType\": 0,\n        \"maxLeaderLevel\": 3,\n        \"currentApprovalInfoDTO\": null,\n        \"historyApprovalInfoDTOList\": [],\n        \"startTime\": \"2020-03-19 05:52:47\",\n        \"endTime\": \"2020-03-21 02:00:00\",\n        \"duration\": 1.83834490740741,\n        \"status\": 0,\n        \"CurrentApprovalInfoDTO\": {\n        \t\"ApprovalInfoId\":\"\",\n        \t\"ApproverDTO\":{\n            \"personId\": \"b5c7283d-e6a3-45e0-8132-1fd024ccda0d\",\n            \"personName\": \"人员3\"\n            },\n        \t\"Msg\":\"同意\",\n        \t\"ApprovalType\":0,\n        \t\"Time\":0\n        }\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:5168/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5168",
+					"path": [
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5168/query/approver/b5c7283d-e6a3-45e0-8132-1fd024ccda0d",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5168/query/approver/b5c7283d-e6a3-45e0-8132-1fd024ccda0d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5168",
+					"path": [
+						"query",
+						"approver",
+						"b5c7283d-e6a3-45e0-8132-1fd024ccda0d"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
