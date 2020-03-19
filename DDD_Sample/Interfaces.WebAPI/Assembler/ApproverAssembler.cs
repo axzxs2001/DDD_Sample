@@ -18,7 +18,6 @@ namespace Interfaces.WebAPI.Assembler
             };
             return dto;
         }
-
         public static Approver ToDO(ApproverDTO dto)
         {
             var approver = new Approver()
